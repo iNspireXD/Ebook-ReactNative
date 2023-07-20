@@ -1,8 +1,5 @@
-import { View, Text, SafeAreaView, Dimensions, StyleSheet } from "react-native";
-import React from "react";
-import { Image } from "react-native";
+import { View, Dimensions, StyleSheet } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
-import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import LottieView from "lottie-react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -12,34 +9,35 @@ const { width, height } = Dimensions.get("window");
 
 const OnboardingScreen = () => {
   const navigation = useNavigation();
-
   const doneHandler = () => {
-    navigation.navigate("Login" as never); // update the type of the argument
+    navigation.navigate("Login" as never);
   };
 
   return (
     <View className="flex-1">
       <Onboarding
+        bottomBarHighlight={false}
         onDone={doneHandler}
         onSkip={doneHandler}
+        titleStyles={{
+          fontSize: 18,
+          fontWeight: "bold",
+        }}
+        subTitleStyles={{
+          fontSize: 14,
+        }}
         containerStyles={{
           paddingHorizontal: 15,
         }}
         pages={[
           {
             backgroundColor: "#C6E3BA",
-            titleStyles: {
-              fontSize: 18,
-              fontWeight: "bold",
-            },
-            subTitleStyles: {
-              fontSize: 14,
-            },
+
             image: (
               <View style={styles.lottie}>
                 <LottieView
                   autoPlay
-                  loop
+                  loop={false}
                   source={require("../assets/animations/knowledge.json")}
                 />
               </View>
@@ -50,18 +48,11 @@ const OnboardingScreen = () => {
           },
           {
             backgroundColor: "#fef3c7",
-            titleStyles: {
-              fontSize: 18,
-              fontWeight: "bold",
-            },
-            subTitleStyles: {
-              fontSize: 14,
-            },
             image: (
               <View style={styles.lottie}>
                 <LottieView
                   autoPlay
-                  loop
+                  loop={false}
                   source={require("../assets/animations/library.json")}
                 />
               </View>
@@ -73,19 +64,16 @@ const OnboardingScreen = () => {
           {
             backgroundColor: "#a3c8e6",
             titleStyles: {
-              fontSize: 18,
-              fontWeight: "bold",
               color: "white",
             },
             subTitleStyles: {
-              fontSize: 14,
               color: "white",
             },
             image: (
               <View style={styles.lottie}>
                 <LottieView
                   autoPlay
-                  loop
+                  loop={false}
                   source={require("../assets/animations/reading.json")}
                 />
               </View>
