@@ -2,6 +2,8 @@ import { View, Dimensions, StyleSheet } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
 import LottieView from "lottie-react-native";
 import { useNavigation } from "@react-navigation/native";
+import DoneButton from "../components/DoneButton";
+import Pagination from "../components/Pagination";
 
 type Props = {};
 
@@ -16,9 +18,17 @@ const OnboardingScreen = () => {
   return (
     <View className="flex-1">
       <Onboarding
+        DoneButtonComponent={(props) => (
+          <DoneButton {...props} title="Get Started" />
+        )}
+        NextButtonComponent={(props) => <DoneButton {...props} title="Next" />}
         bottomBarHighlight={false}
+        DotComponent={(props) => (
+          <Pagination selected={props.selected} isLight={props.isLight} />
+        )}
         onDone={doneHandler}
-        onSkip={doneHandler}
+        // onSkip={doneHandler}
+        showSkip={false}
         titleStyles={{
           fontSize: 18,
           fontWeight: "bold",
