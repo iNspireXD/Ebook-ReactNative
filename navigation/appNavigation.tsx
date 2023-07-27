@@ -2,10 +2,15 @@ import React from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginScreen from "../screens/LoginScreen";
 import OnboardingScreen from "../screens/OnboardingScreen";
+import LoginScreen from "../screens/LoginScreen";
 
-const Stack = createNativeStackNavigator();
+export type WelcomeStackParamList = {
+  Onboarding: undefined;
+  Login: undefined;
+};
+
+const Stack = createNativeStackNavigator<WelcomeStackParamList>();
 
 export default function AppNavigation() {
   return (

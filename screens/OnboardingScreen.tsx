@@ -4,17 +4,21 @@ import LottieView from "lottie-react-native";
 import { useNavigation } from "@react-navigation/native";
 import DoneButton from "../components/DoneButton";
 import Pagination from "../components/Pagination";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { WelcomeStackParamList } from "../navigation/appNavigation";
 
-type Props = {};
+type OnboardingScreenNavigationProp = NativeStackNavigationProp<
+  WelcomeStackParamList,
+  "Onboarding"
+>;
 
 const { width, height } = Dimensions.get("window");
 
 const OnboardingScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<OnboardingScreenNavigationProp>();
   const doneHandler = () => {
-    navigation.navigate("Login" as never);
+    navigation.navigate("Login");
   };
-
   return (
     <View className="flex-1">
       <Onboarding
