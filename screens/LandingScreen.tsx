@@ -2,9 +2,17 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import Button from "../components/ui/Button";
 import { Colors } from "../constants/styles";
-type Props = {};
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootParamList } from "../navigation/RootNavigator";
+
+type LandingScreenNavigationProp = NativeStackNavigationProp<
+  RootParamList,
+  "Landing"
+>;
 
 const LandingScreen = () => {
+  const navigation = useNavigation<LandingScreenNavigationProp>();
   return (
     <View
       style={SafeAreaViewAndroid.AndroidSafeArea}
@@ -22,12 +30,21 @@ const LandingScreen = () => {
       </View>
       {/* login and signup buttons */}
       <View className="mt-10">
-        <Button onPress={() => {}} customStyle="rounded-md w-[350px]">
+        <Button
+          onPress={() => {
+            navigation.navigate("Login");
+          }}
+          customStyle="rounded-md w-[350px]"
+        >
           Login
         </Button>
         <View className="flex-row justify-center mt-4">
           <Text className="text-gray-600">Don't have an account? </Text>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("SignUp");
+            }}
+          >
             <Text style={{ color: Colors.accent100, fontWeight: "bold" }}>
               Create a new user.
             </Text>
