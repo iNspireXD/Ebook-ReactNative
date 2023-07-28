@@ -5,10 +5,10 @@ import { useNavigation } from "@react-navigation/native";
 import DoneButton from "../components/DoneButton";
 import Pagination from "../components/Pagination";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { WelcomeStackParamList } from "../navigation/appNavigation";
+import { RootParamList } from "../navigation/RootNavigator";
 
 type OnboardingScreenNavigationProp = NativeStackNavigationProp<
-  WelcomeStackParamList,
+  RootParamList,
   "Onboarding"
 >;
 
@@ -17,7 +17,7 @@ const { width, height } = Dimensions.get("window");
 const OnboardingScreen = () => {
   const navigation = useNavigation<OnboardingScreenNavigationProp>();
   const doneHandler = () => {
-    navigation.navigate("Login");
+    navigation.navigate("Landing");
   };
   return (
     <View className="flex-1">
