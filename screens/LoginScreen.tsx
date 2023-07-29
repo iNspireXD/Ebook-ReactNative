@@ -1,12 +1,7 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import { View, Text, Image } from "react-native";
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
-import Button from "../components/ui/Button";
-import InputText from "../components/ui/InputText";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootParamList } from "../navigation/RootNavigator";
-import { useNavigation } from "@react-navigation/native";
-import { Colors } from "../constants/styles";
 import AuthForm from "../components/Auth/AuthForm";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
@@ -15,24 +10,6 @@ type LoginScreenNavigationProp = NativeStackNavigationProp<
 >;
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const navigation = useNavigation<LoginScreenNavigationProp>();
-
-  function updateInputValueHandler(
-    inputType: string,
-    enteredValue: string
-  ): void {
-    switch (inputType) {
-      case "email":
-        setEmail(enteredValue);
-        break;
-      case "password":
-        setPassword(enteredValue);
-        break;
-    }
-  }
-
   return (
     <View style={SafeAreaViewAndroid.AndroidSafeArea}>
       <View className="items-center mt-20">
