@@ -2,8 +2,8 @@ import { View, Dimensions, StyleSheet } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
 import LottieView from "lottie-react-native";
 import { useNavigation } from "@react-navigation/native";
-import DoneButton from "../components/DoneButton";
-import Pagination from "../components/Pagination";
+import DoneButton from "../components/ui/DoneButton";
+import Pagination from "../components/ui/Pagination";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootParamList } from "../navigation/RootNavigator";
 

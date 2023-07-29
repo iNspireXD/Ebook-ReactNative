@@ -7,6 +7,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootParamList } from "../navigation/RootNavigator";
 import { useNavigation } from "@react-navigation/native";
 import { Colors } from "../constants/styles";
+import AuthForm from "../components/Auth/AuthForm";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
   RootParamList,
@@ -42,37 +43,12 @@ const LoginScreen = () => {
         />
         <Text className="font-bold text-lg text-slate-600">FoxLearn</Text>
       </View>
-      <View className="px-4">
-        <Text className="mt-8 mb-4 mx-2 font-bold text-slate-600 text-base">
-          Welcome Back
+      <View className="mt-8 flex items-start">
+        <Text className="text-slate-600 ml-4 font-bold text-base">
+          Welcome back! Glad to see you, Again!
         </Text>
-        <InputText
-          value={email}
-          placeholder="Email"
-          onUpdateValue={updateInputValueHandler.bind(this, "email")}
-        />
-        <InputText
-          value={password}
-          placeholder="Password"
-          onUpdateValue={updateInputValueHandler.bind(this, "password")}
-          secure={true}
-        />
-        <Button onPress={() => {}} customStyle="mt-4">
-          Login
-        </Button>
-        <View className="flex-row justify-center mt-4">
-          <Text className="text-gray-600">Don't have an account? </Text>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("SignUp");
-            }}
-          >
-            <Text style={{ color: Colors.accent100, fontWeight: "bold" }}>
-              Create a new user.
-            </Text>
-          </TouchableOpacity>
-        </View>
       </View>
+      <AuthForm isLogin />
     </View>
   );
 };
