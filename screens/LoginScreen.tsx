@@ -1,12 +1,13 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Alert } from "react-native";
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootParamList } from "../navigation/RootNavigator";
 import AuthForm from "../components/Auth/AuthForm";
 import AuthContent from "../components/Auth/AuthContent";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { loginUser } from "../utils/auth";
 import LoadingOverlay from "../components/LoadingOverlay";
+import { AuthContext } from "../store/auth-context";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
   RootParamList,
@@ -15,6 +16,7 @@ type LoginScreenNavigationProp = NativeStackNavigationProp<
 
 const LoginScreen = () => {
   const [islogging, setIslogging] = useState(false);
+  const authCtx = useContext(AuthContext);
 
   async function signInHanlder({
     email,
@@ -24,7 +26,15 @@ const LoginScreen = () => {
     password: string;
   }) {
     setIslogging(true);
-    await loginUser(email, password);
+    try {
+      const token = await loginUser(email, password);
+      authCtx.authenticate(token);
+    } catch (error) {
+      Alert.alert(
+        "Authentication Failed!",
+        " Could not log you in. Please try again"
+      );
+    }
     setIslogging(false);
   }
 

@@ -1,14 +1,16 @@
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView, Alert } from "react-native";
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
-import AuthContent from "../components/Auth/AuthContent";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { createUser } from "../utils/auth";
 import LoadingOverlay from "../components/LoadingOverlay";
+import { AuthContext } from "../store/auth-context";
+import AuthContent from "../components/Auth/AuthContent";
 
 type Props = {};
 
 const SignUpScreen = (props: Props) => {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
+  const authCtx = useContext(AuthContext);
 
   async function signUpHandler({
     email,
@@ -18,7 +20,15 @@ const SignUpScreen = (props: Props) => {
     password: string;
   }) {
     setIsAuthenticating(true);
-    await createUser(email, password);
+    try {
+      const token = await createUser(email, password);
+      authCtx.authenticate(token);
+    } catch (error) {
+      Alert.alert(
+        "Authentication Failed!",
+        "Could not create user. Check you input and try again late."
+      );
+    }
     setIsAuthenticating(false);
   }
 
