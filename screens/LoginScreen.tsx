@@ -4,6 +4,9 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootParamList } from "../navigation/RootNavigator";
 import AuthForm from "../components/Auth/AuthForm";
 import AuthContent from "../components/Auth/AuthContent";
+import { useState } from "react";
+import { loginUser } from "../utils/auth";
+import LoadingOverlay from "../components/LoadingOverlay";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
   RootParamList,
@@ -11,6 +14,24 @@ type LoginScreenNavigationProp = NativeStackNavigationProp<
 >;
 
 const LoginScreen = () => {
+  const [islogging, setIslogging] = useState(false);
+
+  async function signInHanlder({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) {
+    setIslogging(true);
+    await loginUser(email, password);
+    setIslogging(false);
+  }
+
+  if (islogging) {
+    <LoadingOverlay message="Logging......" />;
+  }
+
   return (
     <View style={SafeAreaViewAndroid.AndroidSafeArea}>
       <View className="items-center mt-20">
@@ -26,7 +47,7 @@ const LoginScreen = () => {
           Welcome back! Glad to see you, Again!
         </Text>
       </View>
-      <AuthContent isLogin onAuthenticate={() => {}} />
+      <AuthContent isLogin onAuthenticate={signInHanlder} />
     </View>
   );
 };

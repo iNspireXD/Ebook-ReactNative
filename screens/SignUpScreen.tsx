@@ -1,13 +1,31 @@
-import { View, Text, Image } from "react-native";
-import React from "react";
-import AuthForm from "../components/Auth/AuthForm";
+import { View, Text, Image, ScrollView } from "react-native";
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
-import { ScrollView } from "react-native";
 import AuthContent from "../components/Auth/AuthContent";
+import { useState } from "react";
+import { createUser } from "../utils/auth";
+import LoadingOverlay from "../components/LoadingOverlay";
 
 type Props = {};
 
 const SignUpScreen = (props: Props) => {
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
+
+  async function signUpHandler({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) {
+    setIsAuthenticating(true);
+    await createUser(email, password);
+    setIsAuthenticating(false);
+  }
+
+  if (isAuthenticating) {
+    return <LoadingOverlay message="Creating user...." />;
+  }
+
   return (
     <ScrollView style={SafeAreaViewAndroid.AndroidSafeArea}>
       <View className="items-center mt-20">
@@ -23,7 +41,7 @@ const SignUpScreen = (props: Props) => {
           Hello! Register to get started
         </Text>
       </View>
-      <AuthContent onAuthenticate={() => {}} />
+      <AuthContent onAuthenticate={signUpHandler} />
     </ScrollView>
   );
 };
