@@ -3,6 +3,7 @@ import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootParamList } from "../navigation/RootNavigator";
 import AuthForm from "../components/Auth/AuthForm";
+import AuthContent from "../components/Auth/AuthContent";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
   RootParamList,
@@ -25,7 +26,7 @@ const LoginScreen = () => {
           Welcome back! Glad to see you, Again!
         </Text>
       </View>
-      <AuthForm isLogin />
+      <AuthContent isLogin onAuthenticate={() => {}} />
     </View>
   );
 };

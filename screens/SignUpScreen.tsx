@@ -2,12 +2,14 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import AuthForm from "../components/Auth/AuthForm";
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
+import { ScrollView } from "react-native";
+import AuthContent from "../components/Auth/AuthContent";
 
 type Props = {};
 
 const SignUpScreen = (props: Props) => {
   return (
-    <View style={SafeAreaViewAndroid.AndroidSafeArea}>
+    <ScrollView style={SafeAreaViewAndroid.AndroidSafeArea}>
       <View className="items-center mt-20">
         <Image
           className="h-20 w-20"
@@ -21,8 +23,8 @@ const SignUpScreen = (props: Props) => {
           Hello! Register to get started
         </Text>
       </View>
-      <AuthForm />
-    </View>
+      <AuthContent onAuthenticate={() => {}} />
+    </ScrollView>
   );
 };
 
