@@ -1,5 +1,5 @@
 import { View, Text, KeyboardTypeOptions } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Icon, Input } from "@rneui/themed";
 import { IconNode } from "@rneui/base";
 
@@ -11,6 +11,7 @@ type Props = {
   value: string;
   isInvalid?: boolean;
   icon?: IconNode;
+  errorMessage?: string;
 };
 
 const InputText = ({
@@ -21,10 +22,16 @@ const InputText = ({
   value,
   isInvalid,
   icon,
+  errorMessage,
 }: Props) => {
   return (
-    <View className="px-4 mt-4 w-full">
+    <View className="px-4 my-3 w-full">
       <Input
+        errorStyle={{
+          color: "#f0817f",
+          marginTop: 6,
+        }}
+        errorMessage={isInvalid ? errorMessage : ""}
         rightIcon={icon}
         style={{
           backgroundColor: "#F7F8F9",

@@ -66,6 +66,7 @@ const AuthForm = ({ isLogin, onSubmit, credentialsIsInvalid }: Props) => {
         value={enteredEmail}
         keyboardType="email-address"
         isInvalid={emailIsInvalid}
+        errorMessage={emailIsInvalid ? "Please enter valid email address" : ""}
       />
       {!isLogin && (
         <InputText
@@ -74,6 +75,7 @@ const AuthForm = ({ isLogin, onSubmit, credentialsIsInvalid }: Props) => {
           value={enteredConfirmEmail}
           keyboardType="email-address"
           isInvalid={emailDontMatch}
+          errorMessage={emailDontMatch ? "Emails dont match" : ""}
         />
       )}
       <InputText
@@ -82,6 +84,11 @@ const AuthForm = ({ isLogin, onSubmit, credentialsIsInvalid }: Props) => {
         secure={passwordHidden ? true : false}
         value={enteredPassword}
         isInvalid={passwordIsInvalid}
+        errorMessage={
+          passwordIsInvalid
+            ? "Password length must be greater than 8 characters"
+            : ""
+        }
         icon={
           passwordHidden ? (
             <Icon
@@ -108,6 +115,7 @@ const AuthForm = ({ isLogin, onSubmit, credentialsIsInvalid }: Props) => {
           value={enteredConfirmPassword}
           secure={confirmPasswordHidden ? true : false}
           isInvalid={passwordDontMatch}
+          errorMessage={passwordDontMatch ? "Passwords dont match" : ""}
           icon={
             confirmPasswordHidden ? (
               <Icon
