@@ -16,7 +16,7 @@ export type RootParamList = {
 
 const Stack = createNativeStackNavigator<RootParamList>();
 
-const AuthStack = () => {
+export const AuthStack = () => {
   return (
     <Stack.Navigator initialRouteName="Onboarding">
       <Stack.Group screenOptions={{ headerShown: false }}>
@@ -25,11 +25,14 @@ const AuthStack = () => {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
       </Stack.Group>
-      <Stack.Group>
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Group>
     </Stack.Navigator>
   );
 };
 
-export default AuthStack;
+export const AuthenticatedStack = () => {
+  return (
+    <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen name="Home" component={HomeScreen} />
+    </Stack.Navigator>
+  );
+};

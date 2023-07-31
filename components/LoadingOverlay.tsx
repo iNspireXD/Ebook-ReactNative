@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 import React from "react";
 
 type Props = {
@@ -7,8 +7,9 @@ type Props = {
 
 const LoadingOverlay = ({ message }: Props) => {
   return (
-    <View className="flex justify-center items-center">
-      <Text>{message}</Text>
+    <View className="flex justify-center items-center p-32">
+      <Text className="text-base mb-3">{message}</Text>
+      <ActivityIndicator size="large" />
     </View>
   );
 };

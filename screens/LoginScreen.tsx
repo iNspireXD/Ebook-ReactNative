@@ -39,7 +39,7 @@ const LoginScreen = () => {
   }
 
   if (islogging) {
-    <LoadingOverlay message="Logging......" />;
+    return <LoadingOverlay message="Logging......" />;
   }
 
   return (
