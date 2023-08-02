@@ -34,8 +34,8 @@ const LoginScreen = () => {
         "Authentication Failed!",
         " Could not log you in. Please try again"
       );
+      setIslogging(false);
     }
-    setIslogging(false);
   }
 
   if (islogging) {

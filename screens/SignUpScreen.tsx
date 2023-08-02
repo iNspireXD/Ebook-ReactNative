@@ -28,8 +28,8 @@ const SignUpScreen = (props: Props) => {
         "Authentication Failed!",
         "Could not create user. Check you input and try again late."
       );
+      setIsAuthenticating(false);
     }
-    setIsAuthenticating(false);
   }
 
   if (isAuthenticating) {
